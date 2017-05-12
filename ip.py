@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Python script to check if IP address is working or not.
 
 import sys
@@ -32,6 +34,7 @@ def worker_func(ping_args, pending, done):
 # The number of workers.
 NUM_WORKERS = 4
 
+# Mode
 verbose = True
 
 plat = platform.system()
@@ -67,9 +70,12 @@ for w in workers:
     w.daemon = True
     w.start()
 
+# Lists to store results
 results = []
 working = []
 not_working = []
+
+# Parser to parse the ping response
 ping_parser = pingparsing.PingParsing()
 
 # Get the results as they arrive.
@@ -108,6 +114,8 @@ for result in results:
     else:
         print(result[1].decode("utf-8"))
 """        
+
+# Print working and not working
 print("Working")
 print(working)
 print("\nNot Working")
